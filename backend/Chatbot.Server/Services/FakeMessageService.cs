@@ -27,7 +27,7 @@ public class FakeMessageService(MessageContext DbContext) : IMessageService
 
     public async IAsyncEnumerable<string> GetResponse(string message)
     {
-        var length = Random.Shared.Next(3);
+        var length = Random.Shared.Next(3) + 1;
         var generated = _lorem.GenerateLipsum(length);
         for (var i = 0; i < generated.Length; i += 3)
         {
