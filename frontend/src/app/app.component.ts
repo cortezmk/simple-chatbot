@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { Observable } from 'rxjs';
@@ -19,7 +18,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     AsyncPipe,
     MatToolbarModule,
     MatIconModule,
@@ -101,8 +99,6 @@ export class AppComponent {
   ngAfterViewInit() {
     this.mainElement.nativeElement.scrollTop = 
       this.mainElement.nativeElement.scrollHeight;
-    // this.mainElement.nativeElement
-    //   .scrollTo(0, this.mainElement.nativeElement.scrollHeight);
   }
 
   ngOnDestroy() {
