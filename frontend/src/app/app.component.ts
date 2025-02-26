@@ -53,7 +53,6 @@ export class AppComponent {
   private stream: ISubscription<string> | null = null;
 
   async sendMessage() {
-    console.log('sendMessage');
     const newMessage = this.newMessage;
     this.newMessage = '';
     let addedMessage = await this.messagesService.addMessage(newMessage, 'User');
@@ -75,12 +74,10 @@ export class AppComponent {
   }
 
   async handleStream(message: string) {
-    console.log('handle stream');
     const stream = await this.messagesService.receiveResponse(message);
     this.isStreaming = true;
     this.stream = stream.subscribe({
       next: (m: string) => {
-        console.log('next');
         if(this.currentAssistantMessage)
           this.currentAssistantMessage.content = m;
       },
