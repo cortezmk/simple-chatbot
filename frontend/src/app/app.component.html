@@ -1,0 +1,61 @@
+<main class="main" #main>
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Sample chatbot</span>
+    <span class="spacer"></span>
+    <mat-slide-toggle (change)="onModeChanged($event)"><mat-icon>dark_mode</mat-icon></mat-slide-toggle>
+  </mat-toolbar>
+  <div class="content">
+    @let messages = messages$ | async;
+    @if(messages) {
+      <div class="spacer"></div>
+      <div class="messages">
+        @for(message of messages; track message.id){
+          <app-message [source]="message" (onUpdated)="updateMessage($event)" />
+        }
+        @for(message of newMessages; track message.added) {
+          <app-message [source]="message" (onUpdated)="updateMessage($event)" />
+        }
+        <!-- @if(currentAssistantMessage) {
+          <app-message [source]="currentAssistantMessage" />
+        } -->
+      </div>
+    } @else {
+      <div class="spinner">
+        <mat-spinner />
+      </div>
+    }
+    <div class="writer">
+      <mat-form-field appearance="outline">
+        <textarea
+          [disabled]="isStreaming"
+          [(ngModel)]="newMessage"
+          (keydown.enter)="sendMessage()"
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          placeholder="Type message..."
+        ></textarea>
+      </mat-form-field>
+      @if(isStreaming) {
+        <button
+          mat-mini-fab
+          (click)="cancelMessage()">
+          <mat-icon>stop</mat-icon>
+        </button>
+      } @else {
+        <button
+          mat-mini-fab
+          [disabled]="newMessage === ''"
+          (click)="sendMessage()">
+          <mat-icon>send</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+</main>
+
+<router-outlet />

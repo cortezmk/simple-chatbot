@@ -1,0 +1,23 @@
+<div class="main" [class.assistant]="source.author === 'Assistant'">
+  <div class="date">{{source.added.toLocaleString('PL-pl')}}</div>
+  <div class="container">
+    <div class="container-inner">
+      <div class="reaction-container" [attr.react]="getReaction()">
+        <div class="reaction">
+          <button mat-icon-button><mat-icon>{{getReaction()}}</mat-icon></button>
+        </div>
+        <div class="buttons">
+          <button (click)="setReaction('up')" mat-icon-button>
+            <mat-icon class="up">thumb_up</mat-icon>
+          </button>
+          <button (click)="setReaction('down')" mat-icon-button>
+            <mat-icon class="down">thumb_down</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-card class="message">
+        <mat-card-content>{{source.content}}</mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

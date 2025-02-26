@@ -1,0 +1,30 @@
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .spacer {
+    flex: 1 0 auto;
+  }
+  .content {
+    margin: .5em;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    .writer {
+      display: flex;
+      mat-form-field {
+        width: 100%;
+      }
+      button {
+        margin: .5em;
+      }
+    }
+    .spinner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0 auto;
+    }
+  }
+}
+
