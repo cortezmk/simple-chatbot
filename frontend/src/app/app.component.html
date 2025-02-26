@@ -18,9 +18,6 @@
         @for(message of newMessages; track message.added) {
           <app-message [source]="message" (onUpdated)="updateMessage($event)" />
         }
-        <!-- @if(currentAssistantMessage) {
-          <app-message [source]="currentAssistantMessage" />
-        } -->
       </div>
     } @else {
       <div class="spinner">
